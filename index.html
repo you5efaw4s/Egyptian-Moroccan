@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تعلم الدارجة المغربية - من الصفر للاحتراف</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#c1272d;--secondary:#006233;--gold:#f4a261;--dark:#1a1a2e;--light:#f8f9fa;--card:#fff;--muted:#666;--soft:#fff8f0;--line:#e0e0e0;--gradient:linear-gradient(135deg,#c1272d,#006233);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--light:#12121f;--card:#1f1f33;--dark:#f2f2f2;--muted:#b5b5c5;--soft:#2a2a40;--line:#3a3a52}}
+:root[data-theme="dark"]{--light:#12121f;--card:#1f1f33;--dark:#f2f2f2;--muted:#b5b5c5;--soft:#2a2a40;--line:#3a3a52}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--light);color:var(--dark);line-height:1.8}
+.navbar{background:#1a1a2e;padding:15px 5%;position:fixed;width:100%;top:env(safe-area-inset-top,0px);z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.nav-container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.logo{color:#fff;font-size:1.5rem;font-weight:bold}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;list-style:none;gap:30px}
+.nav-links a{color:#fff;text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.menu-toggle{display:none;color:#fff;font-size:1.5rem;cursor:pointer;background:none;border:none}
+.hero{background:var(--gradient);min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 20px}
+.hero h1{color:#fff;font-size:3.5rem;margin-bottom:20px;text-shadow:2px 2px 4px rgba(0,0,0,.3)}
+.hero p{color:rgba(255,255,255,.9);font-size:1.3rem;margin:0 auto 40px;max-width:600px}
+.btn-primary{background:var(--gold);color:#1a1a2e;padding:15px 40px;border:none;border-radius:50px;font-size:1.2rem;font-weight:bold;cursor:pointer;transition:.3s;text-decoration:none;display:inline-block}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(244,162,97,.4)}
+.stats{display:flex;justify-content:center;gap:50px;margin-top:50px;flex-wrap:wrap}
+.stat-item{color:#fff;text-align:center}
+.stat-item h3{font-size:2.5rem;color:var(--gold)}
+.section{padding:80px 5%;max-width:1200px;margin:0 auto}
+.section-title{text-align:center;font-size:2.5rem;margin-bottom:50px}
+.section-title::after{content:'';display:block;width:80px;height:4px;background:var(--gradient);margin:15px auto;border-radius:2px}
+.levels-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+.level-card{background:var(--card);border-radius:20px;padding:40px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.1);transition:.3s;cursor:pointer;border:3px solid transparent}
+.level-card:hover{transform:translateY(-10px);border-color:var(--gold)}
+.level-card .icon{font-size:4rem;margin-bottom:20px}
+.level-card h3{font-size:1.5rem;margin-bottom:15px}
+.level-card p{color:var(--muted);margin-bottom:20px}
+.progress-bar{background:var(--line);border-radius:10px;height:10px;overflow:hidden;margin-top:15px}
+.progress-fill{height:100%;background:var(--gradient);border-radius:10px;transition:width .5s}
+.lessons-container,.lesson-content{display:none;padding:100px 5% 50px;margin:0 auto}
+.lessons-container{max-width:1200px}
+.lesson-content{max-width:900px}
+.lessons-container.active,.lesson-content.active{display:block}
+.back-btn{background:#1a1a2e;color:#fff;padding:10px 25px;border:none;border-radius:25px;cursor:pointer;margin-bottom:30px;font-size:1rem;transition:.3s}
+.back-btn:hover{background:var(--primary)}
+.lesson-list{display:grid;gap:15px}
+.lesson-item{background:var(--card);border-radius:15px;padding:25px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 5px 20px rgba(0,0,0,.08);cursor:pointer;transition:.3s}
+.lesson-item:hover{transform:translateX(-5px)}
+.lesson-item h4{font-size:1.2rem;margin-bottom:5px}
+.lesson-item p{color:var(--muted);font-size:.9rem}
+.lesson-status{font-size:1.5rem}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin:30px 0}
+.vocab-card{background:var(--card);border-radius:15px;padding:25px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.08);transition:.3s}
+.vocab-card:hover{transform:scale(1.05)}
+.vocab-card .arabic{font-size:1.4rem;color:var(--primary);margin-bottom:10px;font-weight:bold}
+.vocab-card .darija{font-size:1.5rem;color:#2d9b6e;margin-bottom:10px;font-weight:bold}
+.vocab-card .meaning{color:var(--muted);font-size:.95rem}
+.audio-btn{background:var(--gradient);color:#fff;border:none;width:50px;height:50px;border-radius:50%;font-size:1.2rem;cursor:pointer;margin-top:15px;transition:.3s}
+.audio-btn:hover{transform:scale(1.1)}
+.audio-btn.playing{animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.quiz-container{background:var(--card);border-radius:20px;padding:40px;margin-top:40px;box-shadow:0 10px 40px rgba(0,0,0,.1)}
+.quiz-question{font-size:1.4rem;margin-bottom:30px;text-align:center}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.quiz-option{background:var(--light);border:2px solid var(--line);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:.3s;font-size:1.1rem}
+.quiz-option:hover{border-color:var(--gold);background:var(--soft)}
+.quiz-option.correct{background:#d4edda;border-color:#28a745;color:#155724}
+.quiz-option.wrong{background:#f8d7da;border-color:#dc3545;color:#721c24}
+.quiz-score{text-align:center;margin-top:20px;font-size:1.2rem;color:#2d9b6e;font-weight:bold}
+.next-btn{background:var(--secondary);color:#fff;padding:12px 30px;border:none;border-radius:25px;cursor:pointer;font-size:1rem}
+.phrase-card{background:var(--card);border-radius:15px;padding:25px;margin:15px 0;border-right:5px solid var(--primary);box-shadow:0 5px 20px rgba(0,0,0,.06)}
+.phrase-darija{font-size:1.4rem;color:var(--primary);font-weight:bold;margin-bottom:8px}
+.phrase-arabic{color:#2d9b6e;font-size:1.1rem;margin-bottom:5px}
+.phrase-context{color:var(--muted);font-size:.9rem;font-style:italic}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.tip-card{background:var(--card);border-radius:15px;padding:30px;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.tip-icon{font-size:2.5rem;margin-bottom:15px}
+.tip-card h4{margin-bottom:10px}
+.footer{background:#1a1a2e;color:#fff;text-align:center;padding:40px 20px;margin-top:50px}
+.footer p{opacity:.8}
+.fade-in{animation:fadeIn .5s ease-in both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.toast{position:fixed;bottom:calc(30px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:#1a1a2e;color:#fff;padding:14px 28px;border-radius:30px;z-index:10000;font-size:1.1rem}
+@media (max-width:768px){.hero h1{font-size:2rem}.hero p{font-size:1rem}.nav-links{display:none;position:absolute;top:100%;right:0;background:#1a1a2e;width:100%;flex-direction:column;padding:20px;gap:15px}.nav-links.active{display:flex}.menu-toggle{display:block}.quiz-options{grid-template-columns:1fr}.stats{gap:25px}.section-title{font-size:1.8rem}.quiz-container{padding:25px}}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+<div class="logo">🇲🇦 دارجة <span>للمصريين</span></div>
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="#" onclick="showHome();return false">الرئيسية</a></li>
+<li><a href="#" onclick="showLevels();return false">المستويات</a></li>
+<li><a href="#" onclick="showTips();return false">نصائح</a></li>
+<li><a href="#" onclick="showAbout();return false">عن الموقع</a></li>
+</ul></div></nav>
+
+<section class="hero" id="heroSection"><div>
+<h1>🇲🇦 تعلم الدارجة المغربية</h1>
+<p>من الصفر حتى الاحتراف - مصمم خصيصاً للمصريين مع تمارين تفاعلية ومقاطع صوتية</p>
+<a href="#" class="btn-primary" onclick="showLevels();return false">ابدأ التعلم الآن</a>
+<div class="stats">
+<div class="stat-item"><h3>3</h3><p>مستويات</p></div>
+<div class="stat-item"><h3>12</h3><p>درساً تفاعلياً</p></div>
+<div class="stat-item"><h3>90+</h3><p>كلمة وعبارة</p></div>
+</div></div></section>
+
+<section class="section" id="levelsSection" style="display:none">
+<h2 class="section-title">اختر مستواك</h2>
+<div class="levels-grid">
+<div class="level-card" onclick="openLevel('beginner')"><div class="icon">🌱</div><h3>المستوى المبتدئ</h3><p>تعلم التحية، الأرقام، الألوان، والعبارات الأساسية</p><div class="progress-bar"><div class="progress-fill" id="beginnerProgress" style="width:0%"></div></div><small style="color:var(--muted);margin-top:10px;display:block">0% مكتمل</small></div>
+<div class="level-card" onclick="openLevel('intermediate')"><div class="icon">🌿</div><h3>المستوى المتوسط</h3><p>المحادثات اليومية، التسوق، المطعم، والسفر</p><div class="progress-bar"><div class="progress-fill" id="intermediateProgress" style="width:0%"></div></div><small style="color:var(--muted);margin-top:10px;display:block">0% مكتمل</small></div>
+<div class="level-card" onclick="openLevel('advanced')"><div class="icon">🌳</div><h3>المستوى المتقدم</h3><p>التعبيرات الشعبية، الأمثال، والنقاشات المعقدة</p><div class="progress-bar"><div class="progress-fill" id="advancedProgress" style="width:0%"></div></div><small style="color:var(--muted);margin-top:10px;display:block">0% مكتمل</small></div>
+</div></section>
+
+<div class="lessons-container" id="lessonsContainer">
+<button class="back-btn" onclick="showLevels()">← العودة للمستويات</button>
+<h2 class="section-title" id="levelTitle"></h2>
+<div class="lesson-list" id="lessonList"></div></div>
+
+<div class="lesson-content" id="lessonContent">
+<button class="back-btn" onclick="backToLessons()">← العودة للدروس</button>
+<h2 class="section-title" id="lessonTitle"></h2>
+<div id="lessonBody"></div></div>
+
+<section class="section" id="tipsSection" style="display:none">
+<h2 class="section-title">نصائح ذهبية للمصريين</h2>
+<div class="tips-grid">
+<div class="tip-card"><div class="tip-icon">🎯</div><h4>الفرق بين "ق" و "ك"</h4><p>في الدارجة المغربية، حرف "القاف" يُنطق مثل "ق" مفخمة، بينما "الكاف" تُنطق مثل "ك" مصرية. مثلاً: "قلب" (qlb) و "كتاب" (ktab).</p></div>
+<div class="tip-card"><div class="tip-icon">🗣️</div><h4>حرف "ع" و "غ"</h4><p>المغاربة يستخدمون "ع" و "غ" بكثرة. "غادي" تعني "سوف/ذاهب"، و"عندي" تعني "عندي" مثل المصري.</p></div>
+<div class="tip-card"><div class="tip-icon">🔄</div><h4>الضمائر مختلفة</h4><p>"أنا" = "أنا"، "أنت" = "نتا" (للمذكر) و "نتي" (للمؤنث). "هو" = "هوّا" و "هي" = "هيّا".</p></div>
+<div class="tip-card"><div class="tip-icon">📚</div><h4>الكلمات المشتركة</h4><p>كثير من الكلمات متشابهة: "كتاب"، "قلم"، "باب"، "دار" (بيت). استفد من هذه القواسم المشتركة!</p></div>
+<div class="tip-card"><div class="tip-icon">🎵</div><h4>استمع يومياً</h4><p>استمع لأغاني مغربية أو شاهد مسلسلات مغربية. الأذن تتعود بسرعة على النطق والإيقاع.</p></div>
+<div class="tip-card"><div class="tip-icon">💬</div><h4>تحدث بدون خجل</h4><p>المغاربة ودودون جداً ويقدرون محاولاتك. لا تخف من الأخطاء، كل خطأ هو فرصة للتعلم!</p></div>
+</div></section>
+
+<section class="section" id="aboutSection" style="display:none">
+<h2 class="section-title">عن الموقع</h2>
+<div style="max-width:700px;margin:0 auto;text-align:center">
+<p style="font-size:1.2rem;line-height:2;color:var(--muted)">هذا الموقع مصمم خصيصاً للمصريين الذين يريدون تعلم اللهجة المغربية (الدارجة). نهدف إلى تسهيل التواصل بين المصريين والمغاربة من خلال دروس تفاعلية ومقاطع صوتية وتمارين عملية.</p>
+<p style="font-size:1.1rem;margin-top:20px">🇲🇦 🤝 🇪🇬</p>
+<p style="margin-top:20px;color:var(--muted)">تم التطوير بـ ❤️ لتقريب الشعوب العربية</p></div></section>
+
+<footer class="footer"><p>🇲🇦 تعلم الدارجة المغربية للمصريين © 2026</p><p style="margin-top:10px;font-size:.9rem">صنع بحب لتقريب الشعوب العربية</p></footer>
+
+<script>
+const W=(d,a,m,p)=>({darija:d,arabic:a,meaning:m,pronunciation:p});
+const P=(d,a,c)=>({darija:d,arabic:a,context:c});
+const courseData={
+beginner:{title:"المستوى المبتدئ 🌱",lessons:[
+{id:'b1',title:'التحية والتعارف',description:'تعلم كيف تحيي وتعرف عن نفسك',vocabulary:[W('سلام','سلام عليكم','التحية الأساسية','salam'),W('لاباس؟','كيف حالك؟','سؤال عن الحال','labas'),W('لاباس، الحمد لله','بخير، الحمد لله','الرد على السؤال','labas, lhamdullah'),W('سميتي...','اسمي...','لتعريف نفسك','smiti'),W('منين نتا؟','من أين أنت؟','سؤال عن المكان','mnin nta?'),W('أنا من مصر','أنا من مصر','للإجابة','ana mn masr'),W('تبارك الله','ما شاء الله','للتعبير عن الإعجاب','tabarakallah'),W('بسلامة','مع السلامة','للتوديع','bslama')],phrases:[P('كيف داير؟','كيف حالك؟ (للمذكر)','سؤال ودي للمذكر'),P('كيدايرة؟','كيف حالك؟ (للمؤنث)','سؤال ودي للمؤنث'),P('متشرف','تشرفت بمعرفتك','عند التعارف'),P('الله يبارك فيك','بارك الله فيك','للتعبير عن الامتنان')]},
+{id:'b2',title:'الأرقام من 1 إلى 10',description:'تعلم العد بالدارجة المغربية',vocabulary:[W('واحد','1 - واحد','الرقم الأول','wahed'),W('جوج','2 - اثنان','الرقم الثاني','jouj'),W('تلاتة','3 - ثلاثة','الرقم الثالث','tlata'),W('ربعة','4 - أربعة','الرقم الرابع','rbea'),W('خمسة','5 - خمسة','الرقم الخامس','khmsa'),W('ستة','6 - ستة','الرقم السادس','sitta'),W('سبعة','7 - سبعة','الرقم السابع','sbea'),W('تمنية','8 - ثمانية','الرقم الثامن','tmanya'),W('تسعود','9 - تسعة','الرقم التاسع','tsood'),W('عشرة','10 - عشرة','الرقم العاشر','ashra')]},
+{id:'b3',title:'العائلة',description:'أفراد العائلة بالدارجة',vocabulary:[W('بابا','أبي','الأب','baba'),W('ماما','أمي','الأم','mama'),W('خويا','أخي','الأخ','khoya'),W('ختي','أختي','الأخت','khti'),W('جدّي','جدي','الجد','jddi'),W('جدّتي','جدتي','الجدة','jddti'),W('عمّي','عمي','العم','ammi'),W('خالي','خالي','الخال','khali'),W('ولدي','ابني','الابن','wldi'),W('بنتي','ابنتي','الابنة','bnti')]},
+{id:'b4',title:'الألوان',description:'تعلم الألوان الأساسية',vocabulary:[W('أحمر','أحمر','اللون الأحمر','ahmar'),W('أزرق','أزرق','اللون الأزرق','zrq'),W('أخضر','أخضر','اللون الأخضر','akhdar'),W('أصفر','أصفر','اللون الأصفر','asfar'),W('أبيض','أبيض','اللون الأبيض','byad'),W('أسود','أسود','اللون الأسود','swd'),W('بني','بني','اللون البني','bnni'),W('رمادي','رمادي','اللون الرمادي','rmadi')]},
+{id:'b5',title:'الطعام والشراب',description:'كلمات أساسية عن الأكل',vocabulary:[W('الخبز','العيش/الخبز','الطعام الأساسي','lkhbz'),W('الما','المية','الماء','lma'),W('أتاي','الشاي','المشروب الوطني','atay'),W('اللحم','اللحم','اللحم','lham'),W('الدجاج','الفراخ','الدجاج','djaj'),W('الحوت','السمك','السمك','lhut'),W('الخضرة','الخضار','الخضروات','lkhudra'),W('الفاكية','الفاكهة','الفاكهة','lfakya')]}
+]},
+intermediate:{title:"المستوى المتوسط 🌿",lessons:[
+{id:'i1',title:'في السوق',description:'كيف تتسوق وتتفاوض على الأسعار',vocabulary:[W('بشحال هادا؟','بكام ده؟','لسؤال عن السعر','bshhal hada?'),W('غالي بزاف','غالي أوي','للتعبير عن غلاء السعر','ghali bzaf'),W('نقص شوية','نزل شوية','لطلب تخفيض السعر','nqqes shwiya'),W('واخا','تمام/موافق','للموافقة','wakha'),W('عطيني','اعطني','لطلب شيء','atini'),W('فلوس','فلوس/نقود','النقود','flus'),W('سوق','سوق','مكان التسوق','suq'),W('ثمن','سعر','السعر','tman')],phrases:[P('عندك واحد آخر؟','عندك واحد تاني؟','لسؤال عن بديل'),P('نقدر نشوف؟','أقدر أشوف؟','لطلب رؤية المنتج'),P('أنا مشري','أنا هشتري','للتعبير عن نية الشراء')]},
+{id:'i2',title:'في المطعم',description:'كيف تطلب الطعام في المطعم',vocabulary:[W('الكارطة','المنيو','قائمة الطعام','lkarta'),W('أنا جوعان','أنا جعان','للتعبير عن الجوع','ana jwan'),W('بغيت نطلب','عايز أطلب','للطلب','bghit ntlb'),W('الحساب','الحساب/الفلوس','لطلب الفاتورة','l7sab'),W('بالصحة والراحة','بالصحة والراحة','تقال قبل الأكل','bssha wr-raha'),W('بنين','حلو/لذيذ','لوصف الطعام','bnin'),W('النادل','الجرسون','الشخص الذي يخدم','nnadl'),W('ما عندكش','مش عندك؟','لسؤال عن التوفر','ma ndksh')]},
+{id:'i3',title:'الاتجاهات والتنقل',description:'كيف تسأل عن الاتجاهات',vocabulary:[W('فين؟','فين؟','أين؟','fin?'),W('يمين','يمين','الجهة اليمنى','lymin'),W('يسار','شمال','الجهة اليسرى','lysr'),W('نيشان','على طول','للإشارة للاستمرار','nyshan'),W('بعيد','بعيد','مسافة طويلة','b3id'),W('قريب','قريب','مسافة قصيرة','qrib'),W('المحطة','المحطة','محطة الباص أو القطار','lma7atta'),W('الطريق','الطريق','الطريق','tariq')]},
+{id:'i4',title:'الأفعال الشائعة',description:'أفعال تستخدمها كل يوم',vocabulary:[W('أكل','يأكل','فعل الأكل','akal'),W('شرب','يشرب','فعل الشرب','shrb'),W('مشى','يمشي/يروح','فعل المشي','msha'),W('جاء','يجي','فعل المجيء','ja'),W('قال','يقول','فعل القول','qal'),W('عرف','يعرف','فعل المعرفة','3rf'),W('بغى','عايز/يحب','فعل الإرادة','bgha'),W('قدر','يقدر/يستطيع','فعل الاستطاعة','qdr')]}
+]},
+advanced:{title:"المستوى المتقدم 🌳",lessons:[
+{id:'a1',title:'الأمثال المغربية',description:'أمثال شعبية مغربية شهيرة',vocabulary:[W('اللي بغى العسل يصبر لقريص النحل','اللي عايز عسل يتحمل لسع النحل','الصبر على المشقة للوصول للهدف','lli bgha l3asl ysbr lqris nnhl'),W('اليد وحدة ما تصفقش','إيد واحدة ما تصفقش','التعاون ضروري','lyd wa7da ma tsfqsh'),W('اللي فرّط في شيء ندم','اللي فرط في حاجة ندم','التفريط يؤدي للندم','lli frrt fi shi ndm'),W('الصبر مفتاح الفرج','الصبر مفتاح الفرج','الصبر يؤدي للخير','ssbr mftah lfraj'),W('دار البعد عن الحباب','ابتعد عن المشاكل','تجنب ما يؤذيك','dar lb3d 3n l7bab')]},
+{id:'a2',title:'التعبيرات اليومية',description:'تعبيرات يستخدمها المغاربة يومياً',vocabulary:[W('واخا','تمام/حسناً','للموافقة أو الفهم','wakha'),W('علاش؟','ليه؟','لسؤال عن السبب','3lash?'),W('دابا','دلوقتي/الآن','للوقت الحالي','daba'),W('دوي','كلام/حديث','للحديث','dwi'),W('صافي','خلاص/كفاية','لإنهاء شيء','safi'),W('بزاف','أوي/كتير','للتكثير','bzaf'),W('شوية','شوية','للقليل','shwiya'),W('مزيان','كويس/حلو','للوصف الجيد','mzyan')]},
+{id:'a3',title:'المحادثة المتقدمة',description:'جمل للمحادثات المعقدة',vocabulary:[W('فهمت عليك','فهمتك','للتأكيد على الفهم','fhmt 3lik'),W('ما فهمتش','مش فاهم','للتعبير عن عدم الفهم','ma fhamtsh'),W('عاود ليا','قولي تاني','لطلب الإعادة','3awd liya'),W('شنو رأيك؟','إيه رأيك؟','لسؤال عن الرأي','shnu rayk?'),W('أنا موافق','أنا موافق','للتعبير عن الموافقة','ana mwafq'),W('ما اعتقدش','مش معتقد','للتعبير عن عدم الاعتقاد','ma tqtqdsh')]}
+]}};
+
+let currentLevel=null,currentLesson=null,quizScore=0,quizTotal=0,progress={};
+try{progress=JSON.parse(localStorage.getItem('darijaProgress'))||{};}catch(e){progress={};}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function toggleMenu(){$('navLinks').classList.toggle('active');}
+function view(v){
+  $('navLinks').classList.remove('active');
+  $('heroSection').style.display=v==='home'?'flex':'none';
+  $('levelsSection').style.display=(v==='home'||v==='levels')?'block':'none';
+  $('lessonsContainer').classList.toggle('active',v==='lessons');
+  $('lessonContent').classList.toggle('active',v==='lesson');
+  $('tipsSection').style.display=v==='tips'?'block':'none';
+  $('aboutSection').style.display=v==='about'?'block':'none';
+  if(v==='home'||v==='levels')updateProgressBars();
+  window.scrollTo(0,0);
+}
+const showHome=()=>view('home'),showLevels=()=>view('levels'),showTips=()=>view('tips'),showAbout=()=>view('about'),backToLessons=()=>view('lessons');
+
+function openLevel(level){
+  currentLevel=level;
+  const data=courseData[level];
+  $('levelTitle').textContent=data.title;
+  const list=$('lessonList');list.innerHTML='';
+  data.lessons.forEach((lesson,i)=>{
+    const done=progress[lesson.id]&&progress[lesson.id].completed;
+    const d=document.createElement('div');
+    d.className='lesson-item fade-in';
+    d.onclick=()=>openLesson(lesson);
+    d.innerHTML=`<div class="lesson-info"><h4>الدرس ${i+1}: ${lesson.title}</h4><p>${lesson.description}</p></div><div class="lesson-status">${done?'✅':'📖'}</div>`;
+    list.appendChild(d);
+  });
+  view('lessons');
+}
+function openLesson(lesson){
+  currentLesson=lesson;
+  $('lessonTitle').textContent=lesson.title;
+  let h='';
+  if(lesson.vocabulary){
+    h+='<h3 style="margin-bottom:20px;color:var(--primary)">📚 المفردات</h3><div class="vocab-grid">';
+    lesson.vocabulary.forEach((w,i)=>{
+      h+=`<div class="vocab-card fade-in" style="animation-delay:${i*.1}s"><div class="darija">${w.darija}</div><div class="arabic">${w.arabic}</div><div class="meaning">${w.meaning}</div><button class="audio-btn" onclick="speakWord(${i},this)">🔊</button></div>`;
+    });
+    h+='</div>';
+  }
+  if(lesson.phrases){
+    h+='<h3 style="margin:40px 0 20px;color:var(--secondary)">💬 عبارات مفيدة</h3>';
+    lesson.phrases.forEach(p=>{h+=`<div class="phrase-card"><div class="phrase-darija">${p.darija}</div><div class="phrase-arabic">${p.arabic}</div><div class="phrase-context">${p.context}</div></div>`;});
+  }
+  const hasQuiz=lesson.vocabulary&&lesson.vocabulary.length>=4;
+  if(hasQuiz)h+='<div class="quiz-container"><h3 style="text-align:center;margin-bottom:20px">🎯 اختبار سريع</h3><div id="quizArea"></div><div class="quiz-score" id="quizScore"></div></div>';
+  h+='<div style="text-align:center;margin-top:40px"><button class="btn-primary" onclick="completeLesson()">✅ أكملت الدرس</button></div>';
+  $('lessonBody').innerHTML=h;
+  view('lesson');
+  if(hasQuiz)startQuiz();
+}
+
+let quizOptions=[],quizCorrect=null;
+function startQuiz(){quizScore=0;quizTotal=0;$('quizScore').textContent='';showQuizQuestion();}
+function showQuizQuestion(){
+  if(quizTotal>=5){showQuizResults();return;}
+  const vocab=currentLesson.vocabulary;
+  quizCorrect=vocab[Math.floor(Math.random()*vocab.length)];
+  quizOptions=[quizCorrect];
+  while(quizOptions.length<4){const r=vocab[Math.floor(Math.random()*vocab.length)];if(!quizOptions.includes(r)&&r.arabic!==quizCorrect.arabic)quizOptions.push(r);}
+  quizOptions.sort(()=>Math.random()-.5);
+  $('quizArea').innerHTML=`<div class="quiz-question">ما معنى "<strong>${quizCorrect.darija}</strong>" بالمصري؟</div><div class="quiz-options">${quizOptions.map((o,i)=>`<div class="quiz-option" onclick="checkAnswer(this,${i})">${o.arabic}</div>`).join('')}</div>`;
+}
+function checkAnswer(el,i){
+  document.querySelectorAll('.quiz-option').forEach((o,j)=>{o.style.pointerEvents='none';if(quizOptions[j]===quizCorrect)o.classList.add('correct');});
+  if(quizOptions[i]===quizCorrect){quizScore++;}else{el.classList.add('wrong');}
+  quizTotal++;
+  $('quizScore').textContent=`النتيجة: ${quizScore}/${quizTotal}`;
+  setTimeout(showQuizQuestion,1500);
+}
+function showQuizResults(){
+  const pct=Math.round(quizScore/quizTotal*100);
+  let msg,emo;
+  if(pct>=80){msg='ممتاز! أنت بطل! 🎉';emo='🏆';createConfetti();}
+  else if(pct>=60){msg='جيد جداً! استمر! 💪';emo='⭐';}
+  else{msg='لا بأس! حاول مرة أخرى 📚';emo='💪';}
+  $('quizArea').innerHTML=`<div style="text-align:center;padding:30px"><div style="font-size:4rem;margin-bottom:20px">${emo}</div><h3 style="color:#2d9b6e;margin-bottom:10px">${msg}</h3><p style="font-size:1.3rem">حصلت على ${quizScore} من ${quizTotal} (${pct}%)</p><button class="next-btn" onclick="startQuiz()" style="margin-top:20px">🔄 أعد الاختبار</button></div>`;
+}
+
+function speakWord(i,btn){speak(currentLesson.vocabulary[i].darija,btn);}
+function speak(text,btn){
+  try{
+    if(!('speechSynthesis' in window)){toast('المتصفح لا يدعم النطق الصوتي');return;}
+    speechSynthesis.cancel();
+    btn.classList.add('playing');
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='ar-MA';u.rate=.8;
+    const v=speechSynthesis.getVoices().find(v=>v.lang.startsWith('ar'));
+    if(v)u.voice=v;
+    u.onend=u.onerror=()=>btn.classList.remove('playing');
+    speechSynthesis.speak(u);
+  }catch(e){btn.classList.remove('playing');}
+}
+if('speechSynthesis' in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
+
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2500);}
+function completeLesson(){
+  if(!currentLesson)return;
+  progress[currentLesson.id]={completed:true,date:new Date().toISOString()};
+  try{localStorage.setItem('darijaProgress',JSON.stringify(progress));}catch(e){}
+  createConfetti();toast('🎉 أحسنت! أكملت الدرس بنجاح!');
+  openLevel(currentLevel);
+}
+function updateProgressBars(){
+  ['beginner','intermediate','advanced'].forEach(level=>{
+    const ls=courseData[level].lessons;
+    const done=ls.filter(l=>progress[l.id]&&progress[l.id].completed).length;
+    const pct=Math.round(done/ls.length*100);
+    const bar=$(level+'Progress');
+    if(bar){bar.style.width=pct+'%';bar.parentElement.nextElementSibling.textContent=pct+'% مكتمل';}
+  });
+}
+function createConfetti(){
+  const colors=['#c1272d','#006233','#f4a261','#ffd700'];
+  for(let i=0;i<50;i++){
+    const c=document.createElement('div');
+    c.style.cssText=`position:fixed;width:10px;height:10px;background:${colors[Math.floor(Math.random()*4)]};top:-10px;left:${Math.random()*100}%;border-radius:${Math.random()>.5?'50%':'0'};pointer-events:none;z-index:9999;animation:fall ${2+Math.random()*3}s linear forwards`;
+    document.body.appendChild(c);setTimeout(()=>c.remove(),5000);
+  }
+}
+view('home');
+</script>
+</body>
+</html>
